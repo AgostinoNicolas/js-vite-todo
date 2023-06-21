@@ -15,7 +15,7 @@ const ElementIDs = {
  */ 
 export const App = (elementId) => {
     
-    const displayTodo = () => {
+    const displayTodos = () => {
         const todos = todoStore.getTodos(todoStore.getCurrentFilter());
         renderTodos(ElementIDs.TodoList, todos);
 
@@ -26,7 +26,7 @@ export const App = (elementId) => {
         const app = document.createElement('div');
         app.innerHTML = html;
         document.querySelector(elementId).append( app );
-        displayTodo();
+        displayTodos();
 
     })();
 
@@ -38,10 +38,9 @@ export const App = (elementId) => {
     newDescriptionInput.addEventListener('keyup', ( event ) => {
 
         if( event.keyCode !== 13 ) return;
-        if( event.target.value.trim().length === 0);
-
+        if( event.target.value.trim().length === 0) return;
         todoStore.addTodo( event.target.value );
-        displayTodo();
+        displayTodos();
 
         event.target.value = '';
     });
@@ -50,11 +49,12 @@ export const App = (elementId) => {
     todoListUl.addEventListener('click', ( event ) => {
         const element = event.target.closest('[data-id]');
         todoStore.toogleTodo(element.getAttribute('data-id'));
-        displayTodo();
+        displayTodos();
         
         
         
     });
+
 
 
 };
