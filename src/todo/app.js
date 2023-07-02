@@ -33,6 +33,8 @@ export const App = (elementId) => {
     // Referencias HTML
     const newDescriptionInput = document.querySelector(ElementIDs.newTodoInput);
     const todoListUl = document.querySelector(ElementIDs.TodoList);
+    
+    
 
     // Listeners
     newDescriptionInput.addEventListener('keyup', ( event ) => {
@@ -51,10 +53,17 @@ export const App = (elementId) => {
         todoStore.toogleTodo(element.getAttribute('data-id'));
         displayTodos();
         
-        
-        
     });
 
 
+    todoListUl.addEventListener('click', ( event ) => {
+        const isDestroyElement =  event.target.className === 'destroy';
+        const element = event.target.closest('[data-id]');
+        if ( !element || !isDestroyElement ) return;
+        todoStore.deleteTodo(element.getAttribute('data-id'));
+        displayTodos();    
+    });
+
+  
 
 };
