@@ -10,13 +10,7 @@ import { Todo } from "../todo/models/todo.model";
 
 
 const state = {
-    todos : [
-        new Todo('Piedra del alma'),
-        new Todo('Piedra del espacio'),
-        new Todo('Piedra del tiempo'),
-        new Todo('Piedra del poder'),
-        new Todo('Piedra del realidad'),
-    ],
+    todos : [],
     filter: Filters.All,
 };
 
